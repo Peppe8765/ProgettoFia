@@ -8,12 +8,13 @@ public class AIModule {
     private static double upperBound;
     private static double boundModifier;
     private static ArrayList<Integer> list;
+    private static int numIns = 0;
 
     public static boolean isSafe(int[][] mat, int row, int col, int targetRow, int targetCol, int element) {
         int[][] tempMatrix = new int[row][col];
         duplicateMatrix(mat, row, col, tempMatrix);
         tempMatrix[targetRow][targetCol] = element;
-
+        numIns++;
         //Se aggiungendo l'elemento alla matrice temporanea violo il vincolo, allora non completo l'inserimento
         if(getDifficolt‡Giornaliera(tempMatrix, row, targetCol) > (upperBound + boundModifier)) return false;
 
@@ -39,6 +40,7 @@ public class AIModule {
             while (iter.hasNext()) {
                 int elem = iter.next();
                 if (elem != 0 && isSafe(dest, row, col, i, j, elem)) {
+                	
                     dest[i][j] = elem;
                     iter.remove();
                     schedule(source, row, col, dest);
@@ -201,5 +203,9 @@ public class AIModule {
         System.out.println("media " +media[0] +"      " + media[1]+"       " + media[2]+"      " + media[3]+"      " + media[4]);
         System.out.println("\nMedia difficolt‡ appuntamenti: " + getDifficolt‡Media(mat, row, col));
 
+    }
+    
+    public static void printNumIns() {
+    	System.out.println("numero di inserimenti provato: " + numIns);
     }
 }

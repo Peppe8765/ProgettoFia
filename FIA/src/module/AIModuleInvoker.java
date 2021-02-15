@@ -9,14 +9,26 @@ public class AIModuleInvoker {
 
 
         int[][] mat = new int[row][col]; //Creazione matrice degli appuntamenti
-        //mat = new int[][]{{1, 2, 3, 4, 5}, {5, 4, 3, 2, 1}, {2, 3, 2, 5, 1}}; //Input di prova
-        //mat = new int[][]{{1, 2, 3, 4, 5}, {5, 4, 3, 2, 1}, {1, 1, 1, 1, 1}}; //Input di prova quello buono
-        mat = new int[][]{{1, 2, 3, 4, 5}, {5, 4, 3, 2, 1}, {5, 4, 5, 4, 4}}; //Input di prova
-
+        
+        //mat = new int[][]{{1, 2, 3, 4, 5}, {5, 4, 3, 2, 1}, {2, 3, 2, 5, 1}}; //Input di prova fatto
+        
+        //mat = new int[][]{{1, 2, 3, 4, 5}, {5, 4, 3, 2, 1}, {1, 1, 1, 1, 1}}; //Input di prova quello buono perfetto
+        
+        //mat = new int[][]{{1, 2, 3, 4, 5}, {5, 4, 3, 2, 1}, {5, 4, 5, 4, 4}}; //Input di prova ottimo fatto
+        
+        //mat = new int[][]{  {5, 5, 4, 4, 5}, {5, 4, 3, 2, 1}, {3, 3, 3, 2, 1}}; //Input di prova che si rompe senza mettere il margine(1) fatto
+       
+        //mat = new int[][]{{2, 2, 3, 1, 4}, {5, 4, 3, 4, 1}, {1, 4, 2, 4, 3}}; //Input di prova da vedere se aggiungere
+        
+        //mat = new int[][]{  {0, 0, 4, 5, 0}, {0, 4, 3, 2, 1}, {0, 3, 3, 0, 1}}; //da usare nella criticità dello 0
+        
+        mat = new int[][]{{1, 2, 3, 4, 5}, {5, 4, 3, 0, 1}, {5, 4, 5, 4, 0}};
+        
+        
         //AIModule.populateMatrix(mat, row, col, s); //Inserimento delle difficoltà
         s.close();
         AIModule.setUpperBound(mat,row, col);
-        AIModule.setBoundModifier(0.0); //Modifica margine di errore (Non è detto che il risultato non superi il valore di limite + margine aggiuntivo)
+        AIModule.setBoundModifier(0.5); //Modifica margine di errore (Non è detto che il risultato non superi il valore di limite + margine aggiuntivo)
 
         AIModule.printUpperBound();
         AIModule.printBoundModifier();
@@ -32,5 +44,7 @@ public class AIModuleInvoker {
             return;
         }
         AIModule.printCalendario(app, row, col, AIModule.getMediaArray(app, row, col)); //Stampa a video dei risultati
+        
+        AIModule.printNumIns();//stampa il numero di tentativi per l'inserimento dell'appuntamento
     }
 }
